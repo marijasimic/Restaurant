@@ -270,7 +270,6 @@ categories.forEach(function (category) {
   });
 });
 
-
 /* ----------CORBE----------- */
 
 // amount pileca corba
@@ -534,4 +533,3 @@ btnSubmit.addEventListener("click", function succesfully() {
     window.location.assign("index.html");
   }
 });
-
