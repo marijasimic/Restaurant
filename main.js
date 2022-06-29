@@ -262,8 +262,8 @@ categories.forEach(function (category) {
           <h3>${meal.name}</h3>
           <p>${meal.description}</p>
           <hr>
-          <p class="price">${meal.price} </p>
-          <input type="number" placeholder="Količina" class="quantity" min=0  required>
+          <p class="price">${meal.price}</p>
+          <input type="number" placeholder="Količina" class="quantity" min=0 required>
         </div>`;
       sections.appendChild(articles);
     }
