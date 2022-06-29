@@ -241,7 +241,6 @@ const allMeals = [
 ];
 
 let categories = new Set(allMeals.map((meal) => meal.category));
-console.log(categories);
 
 categories.forEach(function (category) {
   let h2 = document.createElement("h2");
@@ -264,7 +263,7 @@ categories.forEach(function (category) {
           <p>${meal.description}</p>
           <hr>
           <p class="price">${meal.price} </p>
-          <input type="number" placeholder="Količina" class="quantity quantity27" min=0  required>
+          <input type="number" placeholder="Količina" class="quantity" min=0  required>
         </div>`;
       sections.appendChild(articles);
     }
