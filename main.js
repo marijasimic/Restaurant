@@ -253,6 +253,7 @@ categories.forEach(function (category) {
   main.appendChild(sections);
 
   let meals = allMeals.filter((item) => item.category);
+
   meals.forEach(function (meal) {
     if (h2.textContent == meal.category) {
       let articles = document.createElement("article");
