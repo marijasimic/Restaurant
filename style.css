@@ -1,0 +1,263 @@
+* {
+  margin: 0;
+  padding: 0;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+}
+
+body {
+  font-family: Arial, Helvetica, sans-serif;
+  font-weight: 300;
+  background-color: #daad;
+  color: #3d2e27;
+}
+
+/* HEADER */
+.header {
+  height: 100vh;
+  background-image: url("img/background.jpg");
+  background-repeat: no-repeat;
+  background-size: 100%;
+  margin: 0px 20px 0px 20px;
+  color: #907163;
+}
+
+.header .header-title {
+  position: absolute;
+  top: 13%;
+  left: 33%;
+  font-size: 2.2rem;
+  border-bottom: 2px solid #907163;
+}
+
+.header .header-subtitle, .header .header-subtitle-second, .header .header-subtitle-third {
+  position: absolute;
+  top: 30%;
+  left: 33%;
+  font-size: 1.7rem;
+}
+
+.header .header-subtitle-second {
+  top: 40%;
+}
+
+.header .header-subtitle-third {
+  top: 50%;
+}
+
+.header .header-time {
+  float: right;
+  color: #8d8741;
+  margin-right: 32px;
+  padding: 5px;
+  font-size: 1.2rem;
+}
+
+.header .header-list {
+  position: absolute;
+  top: 60%;
+  left: 37%;
+  font-size: 1.5rem;
+  list-style: circle;
+}
+
+.header .header-list li {
+  margin: 10px;
+  padding-right: 8px;
+}
+
+.header .header-list li a {
+  text-decoration: none;
+  color: #907163;
+}
+
+.header .header-list li a:hover {
+  color: #daad86;
+  cursor: pointer;
+}
+
+/* MAIN */
+.menu {
+  position: relative;
+}
+
+.menu::before {
+  content: "";
+  top: 0;
+  right: 0;
+  left: 0;
+  bottom: 0;
+  background-image: url("img/background-2.jpg");
+  background-repeat: repeat;
+  background-size: 100%;
+  opacity: 0.1;
+  position: absolute;
+}
+
+.section {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  position: relative;
+  padding-top: 50px;
+  padding-bottom: 50px;
+}
+
+.section-title {
+  padding-top: 30px;
+  padding-bottom: 30px;
+  text-align: center;
+  font-size: 2rem;
+  position: relative;
+}
+
+article {
+  margin: 100px;
+}
+
+.image {
+  width: 300px;
+  height: 170px;
+  border: 1.5px solid black;
+}
+
+.image:hover {
+  -webkit-transform: scale(1.1);
+          transform: scale(1.1);
+  -webkit-transition-duration: 0.7s;
+          transition-duration: 0.7s;
+}
+
+.dish-name {
+  background-color: rgba(210, 134, 134, 0.867);
+  text-align: center;
+  padding-top: 0px;
+  margin-top: 0px;
+  border: 1px solid black;
+  font-size: 1.2rem;
+}
+
+.quantity {
+  text-align: center;
+}
+
+/* BILL (IZNOS PORUDZBINE) */
+.section-bill, .section-order {
+  position: relative;
+  padding-bottom: 100px;
+  padding-top: 50px;
+}
+
+.section-bill::before, .section-order::before {
+  content: "";
+  top: 0;
+  right: 0;
+  left: 0;
+  bottom: 0;
+  background-image: url("img/background-2.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  opacity: 0.1;
+  position: absolute;
+}
+
+.bill .bill-title {
+  position: relative;
+}
+
+.bill .table {
+  position: relative;
+  border: 2px solid black;
+  margin: auto;
+  margin-top: 50px;
+  width: 500px;
+  border-collapse: collapse;
+  font-family: sans-serif;
+  font-size: 1rem;
+}
+
+.bill .table tr {
+  border: 1px solid black;
+  text-align: center;
+  background-color: rgba(210, 134, 134, 0.867);
+}
+
+.bill .table tr:hover {
+  background-color: #fbeec1;
+}
+
+.bill .table td {
+  border: 1px solid black;
+  padding: 5px;
+}
+
+.bill .table .amount {
+  color: rgba(119, 14, 14, 0.867);
+  font-weight: 600;
+}
+
+.bill .table button {
+  background-color: #daad;
+  text-align: center;
+  width: 100px;
+  height: 40px;
+  cursor: pointer;
+  border: 1px solid black;
+}
+
+.bill .table button:hover {
+  background-color: rgba(210, 134, 134, 0.867);
+}
+
+.bill .field-highlight {
+  background-color: rgba(188, 101, 101, 0.867);
+  font-size: 1.2rem;
+}
+
+/* ORDER (PORUCI) */
+.order-title {
+  position: relative;
+  padding-bottom: 50px;
+}
+
+.order-form {
+  width: 500px;
+  position: relative;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  background-color: rgba(188, 101, 101, 0.867);
+  padding: 30px;
+  margin: auto;
+}
+
+.order-form input {
+  width: auto;
+  height: 50px;
+  margin: 5px;
+}
+
+.order-form label {
+  margin: 10px 10px 0 10px;
+}
+
+.order-form button {
+  width: 100px;
+  height: 50px;
+  cursor: pointer;
+  margin: 10px;
+  background-color: rgba(192, 85, 85, 0.867);
+  font-size: 1rem;
+  border-radius: 5%;
+}
+/*# sourceMappingURL=style.css.map */

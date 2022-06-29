@@ -1,0 +1,233 @@
+$headerColor: #907163;
+$highlightColor: #daad86;
+$textColor: #3d2e27;
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+body {
+  font-family: Arial, Helvetica, sans-serif;
+  font-weight: 300;
+  background-color: #daad;
+  color: $textColor;
+}
+/* HEADER */
+.header {
+  height: 100vh;
+  background-image: url("img/background.jpg");
+  background-repeat: no-repeat;
+  background-size: 100%;
+  margin: 0px 20px 0px 20px;
+  color: $headerColor;
+  .header-title {
+    position: absolute;
+    top: 13%;
+    left: 33%;
+    font-size: 2.2rem;
+    border-bottom: 2px solid $headerColor;
+  }
+  .header-subtitle {
+    position: absolute;
+    top: 30%;
+    left: 33%;
+    font-size: 1.7rem;
+  }
+  .header-subtitle-second {
+    @extend .header-subtitle;
+    top: 40%;
+  }
+  .header-subtitle-third {
+    @extend .header-subtitle;
+    top: 50%;
+  }
+
+  .header-time {
+    float: right;
+    color: #8d8741;
+    margin-right: 32px;
+    padding: 5px;
+    font-size: 1.2rem;
+  }
+  .header-list {
+    position: absolute;
+    top: 60%;
+    left: 37%;
+    font-size: 1.5rem;
+    list-style: circle;
+    li {
+      margin: 10px;
+      padding-right: 8px;
+      a {
+        text-decoration: none;
+        color: $headerColor;
+        &:hover {
+          color: $highlightColor;
+          cursor: pointer;
+        }
+      }
+    }
+  }
+}
+
+/* MAIN */
+.menu {
+  position: relative;
+}
+.menu::before {
+  content: "";
+  top: 0;
+  right: 0;
+  left: 0;
+  bottom: 0;
+  background-image: url("img/background-2.jpg");
+  background-repeat:repeat;
+  background-size: 100%;
+  opacity: 0.1;
+  position: absolute;
+}
+
+.section {
+  display:flex;
+  flex-direction:row;
+  flex-wrap: wrap;
+  position: relative;
+  padding-top: 50px;
+  padding-bottom: 50px;
+}
+.section-title {
+  padding-top: 30px;
+  padding-bottom: 30px;
+  text-align: center;
+  font-size: 2rem;
+  position: relative;
+}
+article{
+  margin: 100px;
+}
+
+.image {
+  width: 300px;
+  height: 170px;
+  border: 1.5px solid black;
+  &:hover {
+    transform: scale(1.1);
+    transition-duration: 0.7s;
+  }
+}
+.dish-name {
+  background-color: rgba(210, 134, 134, 0.867);
+  text-align: center;
+  padding-top: 0px;
+  margin-top: 0px;
+  border: 1px solid black;
+  font-size: 1.2rem;
+}
+.quantity {
+  text-align: center;
+}
+
+/* BILL (IZNOS PORUDZBINE) */
+
+.section-bill {
+  position: relative;
+  padding-bottom: 100px;
+  padding-top: 50px;
+}
+.section-bill::before {
+  content: "";
+  top: 0;
+  right: 0;
+  left: 0;
+  bottom: 0;
+  background-image: url("img/background-2.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  opacity: 0.1;
+  position: absolute;
+}
+.bill {
+  .bill-title {
+    position: relative;
+  }
+  .table {
+    position: relative;
+    border: 2px solid black;
+    margin: auto;
+    margin-top: 50px;
+    width: 500px;
+    border-collapse: collapse;
+    font-family: sans-serif;
+    font-size: 1rem;
+    tr {
+      border: 1px solid black;
+      text-align: center;
+      background-color: rgba(210, 134, 134, 0.867);
+      &:hover {
+        background-color: #fbeec1;
+      }
+    }
+    td {
+      border: 1px solid black;
+      padding: 5px;
+    }
+    .amount{
+      color: rgba(119, 14, 14, 0.867);
+      font-weight: 600;
+    }
+    button {
+      background-color: #daad;
+      text-align: center;
+      width: 100px;
+      height: 40px;
+      cursor: pointer;
+      border: 1px solid black;
+      &:hover {
+        background-color: rgba(210, 134, 134, 0.867);
+      }
+    }
+  }
+  .field-highlight {
+    background-color: rgba(188, 101, 101, 0.867);
+    font-size: 1.2rem;
+  }
+}
+
+/* ORDER (PORUCI) */
+.section-order {
+  @extend .section-bill;
+}
+.section-order::before {
+  @extend .section-bill::before;
+}
+.order-title {
+  position: relative;
+  padding-bottom: 50px;
+}
+
+.order-form {
+  width: 500px;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  background-color: rgba(188, 101, 101, 0.867);
+  padding: 30px;
+  margin: auto;
+  input {
+    width: auto;
+    height: 50px;
+    margin: 5px;
+  }
+  label {
+    margin: 10px 10px 0 10px;
+  }
+  button {
+    width: 100px;
+    height: 50px;
+    cursor: pointer;
+    margin: 10px;
+    background-color: rgba(192, 85, 85, 0.867);
+    font-size: 1rem;
+    border-radius: 5%;
+  }
+}
