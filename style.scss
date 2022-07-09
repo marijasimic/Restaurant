@@ -18,6 +18,7 @@ body {
   background-image: url("img/background.jpg");
   background-repeat: no-repeat;
   background-size: 100%;
+  position: relative;
   margin: 0px 20px 0px 20px;
   color: $headerColor;
   .header-title {
@@ -25,7 +26,6 @@ body {
     top: 13%;
     left: 33%;
     font-size: 2.2rem;
-    border-bottom: 2px solid $headerColor;
   }
   .header-subtitle {
     position: absolute;
@@ -81,15 +81,15 @@ body {
   left: 0;
   bottom: 0;
   background-image: url("img/background-2.jpg");
-  background-repeat:repeat;
+  background-repeat: repeat;
   background-size: 100%;
   opacity: 0.1;
   position: absolute;
 }
 
 .section {
-  display:flex;
-  flex-direction:row;
+  display: flex;
+  flex-direction: row;
   flex-wrap: wrap;
   position: relative;
   padding-top: 50px;
@@ -97,13 +97,13 @@ body {
 }
 
 .section-title {
-  padding-top: 30px;
+  padding-top: 70px;
   padding-bottom: 30px;
   text-align: center;
   font-size: 2rem;
   position: relative;
 }
-article{
+article {
   margin: 100px;
 }
 
@@ -172,7 +172,7 @@ article{
       border: 1px solid black;
       padding: 5px;
     }
-    .amount{
+    .amount {
       color: rgba(119, 14, 14, 0.867);
       font-weight: 600;
     }
@@ -230,5 +230,124 @@ article{
     background-color: rgba(192, 85, 85, 0.867);
     font-size: 1rem;
     border-radius: 5%;
+  }
+}
+@media (max-width: 1440px) {
+  article {
+    margin: 90px;
+  }
+}
+@media (max-width: 1368px) {
+  article {
+    margin: 70px;
+  }
+}
+
+@media (max-width: 1200px) {
+  article {
+    margin: 100px;
+  }
+}
+@media (max-width: 768px) {
+  .header{
+    background-image: url('img/background-responsive.jpg');
+    background-size: auto;
+    padding-bottom: 50px;
+    .header-title{
+      left: 5%;
+      font-size: 2.1rem;
+     }
+     .header-subtitle{
+       left: 5%;
+       font-size: 1.5rem;
+     }
+     .header-list{
+       left: 10%;
+       font-size: 1.5rem;
+     }
+     .header-time{
+       margin-right: 25px;
+     }
+  }
+  article {
+    margin: 40px;
+  }
+}
+@media (max-width: 480px) {
+  body,
+  html {
+    overflow-x: hidden;
+  }
+  .header{
+    background-size: auto;
+    .header-time{
+      font-size: 1rem;
+      color: rgb(217, 196, 157);
+    }
+    .header-title{
+      font-size: 1.8rem;
+      top: 8%;
+      left: 3%;
+    }
+    .header-subtitle{
+      font-size: 1.3rem;
+    }
+    .header-subtitle-third{
+      top: 48%;
+    }
+    .header-list{
+      font-size: 1.3rem;
+    }
+  }
+  article {
+    margin: 60px;
+  }
+  .bill {
+    .table {
+      width: 400px;
+    }
+  }
+  .order-form {
+    width: 400px;
+  }
+}
+@media (max-width: 375px) {
+  article {
+    margin: 40px;
+  }
+  .bill {
+    .table {
+      width: 350px;
+    }
+  }
+  .order-form {
+    width: 350px;
+  }
+}
+@media (max-width: 320px) {
+  .header{
+    .header-time{
+      margin-right: 0;
+      font-size: .9rem;
+    }
+    .header-title{
+      font-size: 1.7rem;
+      top: 7%;
+      margin: 5px;
+    }
+    .header-subtitle-third{
+     top: 50%;
+    }
+  }
+  article {
+    margin: 50px 10px 50px 10px;
+  }
+  .bill {
+    .table {
+      width: 300px;
+    }
+  }
+  .order-form {
+    width: 300px;
   }
 }

@@ -1,10 +1,5 @@
-window.addEventListener("load", function () {
-  this.alert("Izrada sajta za tablete i mobilne telefone je u toku.");
-});
-
-const quantity = document.querySelectorAll(".quantity");
-let amount = document.querySelectorAll(".amount");
-let main = document.querySelector(".menu");
+const main = document.querySelector(".menu");
+const typeOfMeal = document.querySelectorAll(".type-of-meal");
 
 const allMeals = [
   {
@@ -30,63 +25,63 @@ const allMeals = [
   },
   {
     name: "Pohovano belo meso",
-    category: "Glavno jelo",
+    category: "Glavna jela",
     price: 380,
     imgUrl: "img/pohovana.jpg",
     description: "Pileći file",
   },
   {
     name: "Rolovana piletina",
-    category: "Glavno jelo",
+    category: "Glavna jela",
     price: 400,
     imgUrl: "img/piletina.jpg",
     description: "Piletina, kačkavalj, šunka",
   },
   {
     name: "Ćufte u paradajz sosu",
-    category: "Glavno jelo",
+    category: "Glavna jela",
     price: 420,
     imgUrl: "img/cufte.jpg",
     description: "Junetina, paradajz sos, pire",
   },
   {
     name: "Riba na žaru",
-    category: "Glavno jelo",
+    category: "Glavna jela",
     price: 400,
     imgUrl: "img/riba.jpg",
     description: "Pastrmka, pomfrit",
   },
   {
     name: "Punjene paprike",
-    category: "Glavno jelo",
+    category: "Glavna jela",
     price: 360,
     imgUrl: "img/punjene-paprike.jpeg",
     description: "Junetina, paprika, sos",
   },
   {
     name: "Karađorđeva snicla",
-    category: "Glavno jelo",
+    category: "Glavna jela",
     price: 400,
     imgUrl: "img/karadjordjeva-snicla.jpg",
     description: "Šnicla, sos, pomfrit, povrće",
   },
   {
     name: "Bolonjeze",
-    category: "Glavno jelo",
+    category: "Glavna jela",
     price: 350,
     imgUrl: "img/bolonjeze.jpg",
     description: "Pasta, bolonjeze sos",
   },
   {
     name: "Pohovane tikvice",
-    category: "Glavno jelo",
+    category: "Glavna jela",
     price: 320,
     imgUrl: "img/pohovane-tikvice.jpg",
     description: "Tikvice, jaja, povrce",
   },
   {
     name: "Krem pasta",
-    category: "Glavno jelo",
+    category: "Glavna jela",
     price: 400,
     imgUrl: "img/krem-pasta.jpg",
     description: "Pasta, krem sos, zacini",
@@ -242,262 +237,96 @@ const allMeals = [
 
 let categories = new Set(allMeals.map((meal) => meal.category));
 
-categories.forEach(function (category) {
-  let h2 = document.createElement("h2");
+/* --------CREATING HEADER LIST-------- */
+
+const createList = categories.forEach(function (categ) {
+  const li = document.createElement("li");
+  li.classList.add("type-of-meal");
+  const headerList = document.querySelector(".header-list");
+  headerList.appendChild(li);
+
+  const anchor = document.createElement("a");
+  anchor.innerHTML = `${categ}`;
+  anchor.href = `${"#" + categ.replace(" ", "-").toLowerCase()}`;
+  li.appendChild(anchor);
+});
+
+/*---------- CREATING SECTIONS AND ARTICLES-------*/
+
+const createSections = categories.forEach(function (category) {
+  // creating section title
+  const h2 = document.createElement("h2");
   h2.classList.add("section-title");
   h2.innerHTML = `${category}`;
+  h2.id = `${category.replace(" ", "-").toLowerCase()}`;
   main.appendChild(h2);
 
-  let sections = document.createElement("section");
+  // creating sections
+  const sections = document.createElement("section");
   sections.classList.add("section");
   main.appendChild(sections);
 
   let meals = allMeals.filter((item) => item.category);
 
+  // creating articles
   meals.forEach(function (meal) {
     if (h2.textContent == meal.category) {
-      let articles = document.createElement("article");
+      const articles = document.createElement("article");
       articles.innerHTML = ` 
-        <img src="${meal.imgUrl}" class="image">
-        <div class="dish-name">
-          <h3>${meal.name}</h3>
-          <p>${meal.description}</p>
-          <hr>
-          <p class="price">${meal.price}</p>
-          <input type="number" placeholder="Količina" class="quantity" min=0 required>
-        </div>`;
+         <img src="${meal.imgUrl}" class="image">
+         <div class="dish-name">
+            <h3 class='meal-name'>${meal.name}</h3>
+            <p>${meal.description}</p>
+            <hr>
+            <p class="price">${meal.price}</p>
+            <input type="number" placeholder="Količina" class="quantity" min=0 required>
+          </div>`;
       sections.appendChild(articles);
     }
   });
 });
 
-/* ----------CORBE----------- */
+/*------------- CALCULATE PRICE----------- */
 
-// amount pileca corba
-const calculate0 = function () {
-  amount[0].textContent = quantity[0].value * pricesCorbe.pileca;
-};
-quantity[0].addEventListener("change", calculate0);
+const billLines = document.querySelectorAll(".meal-name-bill");
+const articles = document.querySelectorAll("article");
 
-//amount riblja corba
-const calculate1 = function () {
-  amount[1].textContent = quantity[1].value * pricesCorbe.riblja;
-};
-quantity[1].addEventListener("change", calculate1);
+articles.forEach((article) =>
+  article.addEventListener("change", calculatePrice)
+);
 
-//amount teleca ccorba
-const calculate2 = function () {
-  amount[2].textContent = quantity[2].value * pricesCorbe.teleca;
-};
-quantity[2].addEventListener("change", calculate2);
+function calculatePrice(e) {
+  const input = e.target;
+  const quantity = input.value;
+  const price = input.previousElementSibling.textContent;
+  const mealName = input.parentElement.firstElementChild.textContent;
 
-/* ---------GLAVNA JELA-------- */
+  billLines.forEach(function (line) {
+    const billLine = line;
+    const mealNameBill = billLine.textContent;
 
-//amount pohovano belo meso
-const calculate3 = function () {
-  amount[3].textContent = quantity[3].value * pricesGlavnaJela.pohovanoBelo;
-};
-quantity[3].addEventListener("change", calculate3);
-
-//amount rolavana piletina
-const calculate4 = function () {
-  amount[4].textContent = quantity[4].value * pricesGlavnaJela.rolovanaPiletina;
-};
-quantity[4].addEventListener("change", calculate4);
-
-//amount cufte u paradajz sosu
-const calculate5 = function () {
-  amount[5].textContent = quantity[5].value * pricesGlavnaJela.cufte;
-};
-quantity[5].addEventListener("change", calculate5);
-
-//amount riba na zaru
-const calculate6 = function () {
-  amount[6].textContent = quantity[6].value * pricesGlavnaJela.riba;
-};
-quantity[6].addEventListener("change", calculate6);
-
-//amount punjene paprike
-const calculate7 = function () {
-  amount[7].textContent = quantity[7].value * pricesGlavnaJela.paprike;
-};
-quantity[7].addEventListener("change", calculate7);
-
-//amount karadjordjeva snicla
-const calculate8 = function () {
-  amount[8].textContent = quantity[8].value * pricesGlavnaJela.karadjordjeva;
-};
-quantity[8].addEventListener("change", calculate8);
-
-//amount bolonjeze
-const calculate9 = function () {
-  amount[9].textContent = quantity[9].value * pricesGlavnaJela.bolonjeze;
-};
-quantity[9].addEventListener("change", calculate9);
-
-//amount pohovane tikvice
-const calculate10 = function () {
-  amount[10].textContent =
-    quantity[10].value * pricesGlavnaJela.pohovaneTikvice;
-};
-quantity[10].addEventListener("change", calculate10);
-
-//amount krem pasta
-const calculate11 = function () {
-  amount[11].textContent = quantity[11].value * pricesGlavnaJela.pasta;
-};
-quantity[11].addEventListener("change", calculate11);
-
-/* ----------SALATE---------*/
-
-//amount meksicka salata
-const calculate12 = function () {
-  amount[12].textContent = quantity[12].value * pricesSalate.meksicka;
-};
-quantity[12].addEventListener("change", calculate12);
-
-//amount salata fantazija
-const calculate13 = function () {
-  amount[13].textContent = quantity[13].value * pricesSalate.fantazija;
-};
-quantity[13].addEventListener("change", calculate13);
-
-//amount susam salata
-const calculate14 = function () {
-  amount[14].textContent = quantity[14].value * pricesSalate.susam;
-};
-quantity[14].addEventListener("change", calculate14);
-
-//amount sopska salata
-const calculate15 = function () {
-  amount[15].textContent = quantity[15].value * pricesSalate.sopska;
-};
-quantity[15].addEventListener("change", calculate15);
-
-//amount sveza salata
-const calculate16 = function () {
-  amount[16].textContent = quantity[16].value * pricesSalate.sveza;
-};
-quantity[16].addEventListener("change", calculate16);
-
-//amount proteinska salata
-const calculate17 = function () {
-  amount[17].textContent = quantity[17].value * pricesSalate.proteinska;
-};
-quantity[17].addEventListener("change", calculate17);
-
-/* -----------BURGERI-----------*/
-
-//amount bbq burger
-const calculate18 = function () {
-  amount[18].textContent = quantity[18].value * pricesBurgeri.bbq;
-};
-quantity[18].addEventListener("change", calculate18);
-
-//amount ljuti burger
-const calculate19 = function () {
-  amount[19].textContent = quantity[19].value * pricesBurgeri.ljuti;
-};
-quantity[19].addEventListener("change", calculate19);
-
-//amount domaci burger
-const calculate20 = function () {
-  amount[20].textContent = quantity[20].value * pricesBurgeri.domaci;
-};
-quantity[20].addEventListener("change", calculate20);
-
-//amount klasik burger
-const calculate21 = function () {
-  amount[21].textContent = quantity[21].value * pricesBurgeri.klasik;
-};
-quantity[21].addEventListener("change", calculate21);
-
-//amount dupli burger
-const calculate22 = function () {
-  amount[22].textContent = quantity[22].value * pricesBurgeri.dupli;
-};
-quantity[22].addEventListener("change", calculate22);
-
-//amount cureci burger
-const calculate23 = function () {
-  amount[23].textContent = quantity[23].value * pricesBurgeri.cureci;
-};
-quantity[23].addEventListener("change", calculate23);
-
-/* ------------PICE--------------*/
-
-//amount capricosa
-const calculate24 = function () {
-  amount[24].textContent = quantity[24].value * pricesPice.capricosa;
-};
-quantity[24].addEventListener("change", calculate24);
-
-//amount srpska pica
-const calculate25 = function () {
-  amount[25].textContent = quantity[25].value * pricesPice.srpska;
-};
-quantity[25].addEventListener("change", calculate25);
-
-//amount italiana
-const calculate26 = function () {
-  amount[26].textContent = quantity[26].value * pricesPice.italiana;
-};
-quantity[26].addEventListener("change", calculate26);
-
-/* -----------DEZERTI----------*/
-
-//amount palacinka nutela-plazma
-const calculate27 = function () {
-  amount[27].textContent = quantity[27].value * pricesDezerti.palacinka;
-};
-quantity[27].addEventListener("change", calculate27);
-
-//amount cokoladna fantazija
-const calculate28 = function () {
-  amount[28].textContent =
-    quantity[28].value * pricesDezerti.cokoladnaFantazija;
-};
-quantity[28].addEventListener("change", calculate28);
-
-//amount vocna torta
-const calculate29 = function () {
-  amount[29].textContent = quantity[29].value * pricesDezerti.vocnaTorta;
-};
-quantity[29].addEventListener("change", calculate29);
-
-//amount vocni kup
-const calculate30 = function () {
-  amount[30].textContent = quantity[30].value * pricesDezerti.vocniKup;
-};
-quantity[30].addEventListener("change", calculate30);
-
-//amount vocna salata
-const calculate31 = function () {
-  amount[31].textContent = quantity[31].value * pricesDezerti.vocnaSalata;
-};
-quantity[31].addEventListener("change", calculate31);
-
-//amount cokoladni sufle
-const calculate32 = function () {
-  amount[32].textContent = quantity[32].value * pricesDezerti.sufle;
-};
-quantity[32].addEventListener("change", calculate32);
+    if (mealNameBill == mealName) {
+      billLine.nextElementSibling.textContent = price * quantity;
+    }
+  });
+}
 
 /*--------- TOTAL FOR PAYMENT ----------*/
 
 const btnCalculate = document.querySelector(".calculate");
-const fieldTotal = document.querySelector(".total");
+const total = document.querySelector(".total");
+const amount = document.querySelectorAll(".amount");
 let sum = 0;
 
-const total = function () {
+const totalPrice = function () {
   for (let a = 0; a < amount.length; a++) {
     sum += Number(amount[a].innerText);
   }
-  fieldTotal.textContent = sum;
+  total.textContent = `${sum + " din"}`;
 };
-btnCalculate.addEventListener("click", total);
+btnCalculate.addEventListener("click", totalPrice);
 
-/* FORM VALIDATION */
+/*-------- FORM VALIDATION -------- */
 
 const btnSubmit = document.querySelector(".btn");
 const field = document.querySelectorAll(".field");
